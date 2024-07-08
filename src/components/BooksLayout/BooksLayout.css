@@ -1,0 +1,32 @@
+.booksLayoutContainer{
+    width: 70%;
+    height: 907px;
+    /* border: 1px solid black; */
+    position: relative;
+    left: 15%;
+    top: 30%;
+}
+.searchBar{
+    width: 60%;
+    height: 30%;
+}
+.buttonSearch{
+    width: 15%;
+    height: 40%;
+    position: relative;
+    right: 3%;
+    top: 12%;
+    padding-left: 4.5%;
+    padding-top: 1.5%;
+    font-size: clamp(1px, 2.5vw, 15px);
+}
+.searchBarDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10%;
+    width: 50%;
+    position: relative;
+    left: 24%;
+    top: 10%;
+}
