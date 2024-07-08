@@ -3,6 +3,7 @@ import booksJson from "../../books.json";
 import booksCsv from "../../books.csv";
 import Papa from "papaparse";
 import { useEffect, useState } from "react";
+import Table from "react-bootstrap/Table";
 
 function BooksWidget() {
     const [booksCsvData, setBooksCsvData] = useState([]);
@@ -17,9 +18,9 @@ function BooksWidget() {
         booksJson.forEach(jsonItem => {
             const matchingCsvItem = booksCsvData.find(csvItem => csvItem.id === jsonItem.id);
             if (matchingCsvItem) {
-                merged.push({ ...jsonItem, ...matchingCsvItem }); 
+                merged.push({ ...jsonItem, ...matchingCsvItem });
             } else {
-                merged.push(jsonItem); 
+                merged.push(jsonItem);
             }
         });
 
@@ -36,14 +37,22 @@ function BooksWidget() {
     const mergedBooks = mergeData();
     return (
         <div className="booksWidgetContainer">
-            <h2>Merged Books</h2>
-      <ul>
-        {mergedBooks.map((book, index) => (
-          <li key={index}>
-            {book.id}, {book.title}, {book.author}
-          </li>
-        ))}
-      </ul>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th scope="col">Author</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Genre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {mergedBooks.map((book, index) => (
+                        <tr key={index}>
+                         {book.title}, {book.author}, {book.genre}
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
         </div>
     )
 }

@@ -8,7 +8,8 @@
 }
 .searchBar{
     width: 60%;
-    height: 30%;
+    height: 50%;
+    margin-top: 1%;
 }
 .buttonSearch{
     width: 15%;
@@ -18,11 +19,12 @@
     top: 12%;
     padding-left: 4.5%;
     padding-top: 1.5%;
+    border-radius: 10px;
 }
 .searchBarDiv{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 10%;
     width: 50%;
     position: relative;
