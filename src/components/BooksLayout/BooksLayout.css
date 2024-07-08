@@ -18,7 +18,6 @@
     top: 12%;
     padding-left: 4.5%;
     padding-top: 1.5%;
-    font-size: clamp(1px, 2.5vw, 15px);
 }
 .searchBarDiv{
     display: flex;
