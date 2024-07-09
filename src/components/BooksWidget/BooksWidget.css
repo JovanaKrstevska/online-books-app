@@ -3,5 +3,13 @@
     position: relative;
     top: 10%;
     width: 100%;
-    height: 50%;
+    height: 100%;
+}
+
+thead{
+    text-align: center;
+}
+
+.booksWidgetContainer table thead tr th {
+    background-color: #F2EAEA;
 }

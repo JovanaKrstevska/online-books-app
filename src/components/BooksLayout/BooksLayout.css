@@ -1,9 +1,9 @@
 .booksLayoutContainer{
     width: 70%;
-    height: 907px;
+    height: 880px;
     /* border: 1px solid black; */
     position: relative;
-    left: 15%;
+    left: 14.5%;
     top: 30%;
 }
 .searchBar{

@@ -1,43 +1,11 @@
+import React from "react";
 import "../BooksWidget/BooksWidget.css";
-import booksJson from "../../books.json";
-import booksCsv from "../../books.csv";
-import Papa from "papaparse";
-import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 
-function BooksWidget() {
-    const [booksCsvData, setBooksCsvData] = useState([]);
-
-    useEffect(() => {
-        const csvParsed = Papa.parse(booksCsv, { header: true }).data;
-        setBooksCsvData(csvParsed);
-    }, []);
-
-    const mergeData = () => {
-        const merged = [];
-        booksJson.forEach(jsonItem => {
-            const matchingCsvItem = booksCsvData.find(csvItem => csvItem.id === jsonItem.id);
-            if (matchingCsvItem) {
-                merged.push({ ...jsonItem, ...matchingCsvItem });
-            } else {
-                merged.push(jsonItem);
-            }
-        });
-
-        booksCsvData.forEach(csvItem => {
-            const matchingJsonItem = booksJson.find(jsonItem => jsonItem.id === csvItem.id);
-            if (!matchingJsonItem) {
-                merged.push(csvItem);
-            }
-        });
-
-        return merged;
-    };
-
-    const mergedBooks = mergeData();
+function BooksWidget({books}) {
     return (
         <div className="booksWidgetContainer">
-            <Table striped bordered hover>
+            <Table bordered >
                 <thead>
                     <tr>
                         <th scope="col">Author</th>
@@ -46,10 +14,12 @@ function BooksWidget() {
                     </tr>
                 </thead>
                 <tbody>
-                    {mergedBooks.map((book, index) => (
-                        <tr key={index}>
-                         {book.title}, {book.author}, {book.genre}
-                        </tr>
+                    {books.map((book, index) => (
+                         <tr key={index}>
+                         <td>{book.author}</td>
+                         <td>{book.title}</td>
+                         <td>{book.genre}</td>
+                     </tr>
                     ))}
                 </tbody>
             </Table>
