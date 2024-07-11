@@ -5,7 +5,10 @@ import Table from "react-bootstrap/Table";
 function BooksWidget({books}) {
     return (
         <div className="booksWidgetContainer">
-            <Table bordered >
+            {books == 0 ? (
+                <h1>Not results found</h1>
+            ) : (
+                <Table bordered >
                 <thead>
                     <tr>
                         <th scope="col">Author</th>
@@ -23,6 +26,7 @@ function BooksWidget({books}) {
                     ))}
                 </tbody>
             </Table>
+            )}
         </div>
     )
 }
