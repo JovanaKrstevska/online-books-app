@@ -1,12 +1,13 @@
 // CSS
 import "../BooksLayout/BooksLayout.css";
-import BooksWidget from "../BooksWidget/BooksWidget";
+import BooksWidget from "../widget/BooksWidget/BooksWidget";
 import Button from "../ui/Button/Button";
 import SearchBar from "../ui/SearchBar/SearchBar";
 import SortBar from "../ui/SortBar/SortBar";
 import booksJson from "../../books.json";
 import Papa from "papaparse";
 import { useEffect, useState } from "react";
+import PaginationWidget from "../widget/PaginationWidget/PaginationWidget";
 
 function BooksLayout() {
     const [booksCsvData, setBooksCsvData] = useState([]);
@@ -14,6 +15,8 @@ function BooksLayout() {
     const [mergedBooks, setMergedBooks] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [sortClickOption, setSortClickOption] = useState("author");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(7);
 
     useEffect(() => {
         fetch('/books.csv')
@@ -72,12 +75,14 @@ function BooksLayout() {
             }
         });
         setFilteredBooks(filtered);
+        setCurrentPage(1);
     };
 
     const handleSortChange = (e) => {
         setSortClickOption(e.target.value);
         const selectedOption = sortDataByOption(filteredBooks, e.target.value);
         setFilteredBooks(selectedOption);
+        setCurrentPage(1);
     }
 
     const sortDataByOption = (books, option) => {
@@ -88,6 +93,22 @@ function BooksLayout() {
         })
     }
 
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentBooks = filteredBooks.slice(indexOfFirstItem, indexOfLastItem);
+
+    const nextPage = () => {
+        if (currentPage < Math.ceil(filteredBooks.length / itemsPerPage)) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
     return (
         <div className="booksLayoutContainer">
             <div className="searchBarDiv">
@@ -95,7 +116,14 @@ function BooksLayout() {
                 <Button className="buttonSearch" content={"Search"} modifier="primary" onClick={handleClickSearch} />
                 <SortBar className="sortBar" value={sortClickOption} onChange={handleSortChange}/>
             </div>
-            <BooksWidget books={filteredBooks} />
+            <div className="title">
+                <h1>Welcome</h1>
+                <h3>Which book are you looking for?</h3>
+            </div>
+            <BooksWidget books={currentBooks} />
+            <PaginationWidget next={nextPage} previous={prevPage} page={`${currentPage} / ${Math.ceil(filteredBooks.length / itemsPerPage)}`}
+                disabled1={currentPage === 1}
+                disabled2={currentPage === Math.ceil(filteredBooks.length / itemsPerPage)}/>
         </div>
     )
 }

@@ -1,8 +1,8 @@
 .booksLayoutContainer{
     width: 70%;
-    height: 880px;
+    height: 910px;
     position: relative;
-    left: 14.5%;
+    left: 14%;
     top: 30%;
 }
 .searchBar{
@@ -27,7 +27,7 @@
     height: 10%;
     width: 85%;
     position: relative;
-    left: 10%;
+    left: 8%;
     top: 10%;
 }
 .sortBar{
@@ -36,4 +36,22 @@
     top: 10%;
     height: 60%;
     width: 20%;
+}
+.title{
+    text-align: center;
+    position: relative;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 20%;
+}
+.title h1{
+    font-size: 60px;
+    line-height: 90px;
+    color: #943E3E;
+}
+.title h3{
+    font-size: 40px;
+    color: #AC7C7C;
+    font-weight: lighter;
 }

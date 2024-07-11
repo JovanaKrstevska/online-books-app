@@ -1,0 +1,15 @@
+.paginationControls{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: relative;
+    top: 25%;
+}
+.button{
+    border-radius: 20px;
+    background-color: #D7BDBD;
+    color: #181818;
+    font-size: clamp(1px, 1vw, 15px);
+    padding-top: 1%;
+}
