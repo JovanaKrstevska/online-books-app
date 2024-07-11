@@ -120,7 +120,7 @@ function BooksLayout() {
                 <h1>Welcome</h1>
                 <h3>Which book are you looking for?</h3>
             </div>
-            <BooksWidget books={currentBooks} />
+            <BooksWidget books={currentBooks} searchBookQuery={searchQuery}/>
             <PaginationWidget next={nextPage} previous={prevPage} page={`${currentPage} / ${Math.ceil(filteredBooks.length / itemsPerPage)}`}
                 disabled1={currentPage === 1}
                 disabled2={currentPage === Math.ceil(filteredBooks.length / itemsPerPage)}/>
