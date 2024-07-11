@@ -18,7 +18,7 @@ function BooksWidget({books, searchBookQuery}) {
     return (
         <div className="booksWidgetContainer">
             {books == 0 ? (
-                <h1>Not results found</h1>
+                <h1 className="noFound">No results found</h1>
             ) : (
                 <Table bordered >
                 <thead>

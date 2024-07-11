@@ -16,7 +16,7 @@ function BooksLayout() {
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [sortClickOption, setSortClickOption] = useState("author");
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(7);
+    const [itemsPerPage] = useState(5);
 
     useEffect(() => {
         fetch('/books.csv')
@@ -38,6 +38,9 @@ function BooksLayout() {
     const mergeData = () => {
         const merged = [];
         booksJson.forEach(jsonItem => {
+            if (!jsonItem.id || jsonItem.id === 0 || !jsonItem.title || !jsonItem.author) {
+                return;
+            }
             const matchingCsvItem = booksCsvData.find(csvItem => csvItem.id === jsonItem.id);
             if (matchingCsvItem) {
                 merged.push({ ...jsonItem, ...matchingCsvItem });
@@ -47,6 +50,9 @@ function BooksLayout() {
         });
 
         booksCsvData.forEach(csvItem => {
+            if (!csvItem.id || csvItem.id === 0 || !csvItem.title || !csvItem.author) {
+                return;
+            }
             const matchingJsonItem = booksJson.find(jsonItem => jsonItem.id === csvItem.id);
             if (!matchingJsonItem) {
                 merged.push(csvItem);

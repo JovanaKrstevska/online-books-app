@@ -11,3 +11,7 @@ thead{
 .booksWidgetContainer table thead tr th {
     background-color: #F2EAEA;
 }
+.noFound{
+    text-align: center;
+    color: #943E3E;
+}
