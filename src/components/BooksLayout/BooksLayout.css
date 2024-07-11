@@ -55,3 +55,42 @@
     color: #AC7C7C;
     font-weight: lighter;
 }
+
+@media only screen and (max-width: 1200px){
+    .booksLayoutContainer{
+        width: 70%;
+    }
+    .title h1{
+        font-size: 50px;
+    }
+    .title h3{
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    .searchBarDiv{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    .searchBarDiv{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 430px){
+    .booksLayoutContainer{
+        width: 40%;
+    }
+    .title h1{
+        font-size: 40px;
+    }
+    .title h3{
+        font-size: 20px;
+    }
+    .searchBarDiv{
+        width: 50%;
+    }
+}
